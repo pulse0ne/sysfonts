@@ -60,7 +60,7 @@ static FontDescription *getDescription(FcPattern *p) {
     desc->width = convertWidth(width);
     desc->italic = slant == FC_SLANT_ITALIC;
     desc->monospace = spacing == FC_MONO;
-    
+
     return desc;
 }
 
@@ -106,7 +106,8 @@ static void freeFontList(FontList *fl) {
         return;
     }
     int n = fl->length;
-    for (int i = 0; i < n; i++) {
+    int i;
+    for (i = 0; i < n; i++) {
         freeFontDescription(fl->fonts[i]);
     }
     free(fl->fonts);

@@ -21,4 +21,17 @@ static int convertWidth(float unit) {
     return 5 + unit * 4;
 }
 
-// TODO
+static FontList *getFonts() {
+    static CTFontCollectionRef collection = NULL;
+    if (collection == NULL) {
+        collection = CTFontCollectionCreateFromAvailableFonts(NULL);
+    }
+
+    NSArray *matches = (NSArray *) CTFontCollectionCreateMatchingFontDescriptors(collection);
+    FontList *fl = (FontList *) malloc(sizeof(FontList));
+    fl->length = matches->count;
+    fl->fonts = (FontDescription **) malloc(matches->count * sizeof(FontDescription));
+    // TODO
+}
+
+// TODO: going to need OSXCross and maybe https://gist.github.com/steeve/6905542 to test cross-compilation
